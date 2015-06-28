@@ -1,20 +1,20 @@
 <template name="home">
-  <main class="hidden">
+  <main>
     <h2><span>One message a day.</span></h2>
     <p class="remaining">
 
-        {{#if number}}
-          Nr {{number}}
+        {{#if count}}
+          #{{count}}
           {{#if remaining}}
-             ~ waiting: <span class="blink">{{remaining}}</span>
+             ~ <span class="blink">{{remaining}} waiting</span>
           {{/if}}
         {{else}}
           ~
         {{/if}}
 
     </p>
-    <h1><span>{{message}}</span></h1>
-    <div class="button"><a href="/send">Leave a message</a></div>
+    <h1><span>{{#if message}}{{message}}{{else}}No messages.{{/if}}</span></h1>
+    <div class="button"><a href="/send">Drop a message</a></div>
 
     {{>footer}}
   </main>
