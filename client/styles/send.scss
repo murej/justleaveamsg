@@ -17,7 +17,7 @@ main {
 
   p.instructions {
     visibility: hidden;
-    @extend %font-helvetica-bold;
+    @extend %font-helvetica;
     @include font-scale(0);
     text-transform: uppercase;
     margin-top: lines(-0.5);
