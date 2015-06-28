@@ -50,6 +50,7 @@ Template.sendView.events({
           }
           else {
             $("h1 span").html("&#9786;");
+            Session.set("message", newMessage);
           }
           setTimeout(function() {
             window.location.href = "/";

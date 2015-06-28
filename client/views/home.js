@@ -1,28 +1,29 @@
 _ = lodash;
 
 Template.home.helpers({
-  myAppVariable: function() {
-    return Session.get('myAppVariable');
-  },
-  message: function (message) {
-    setMessage();
+  message: function() {
 
-    var message = Session.get('message');
+    var message = Session.get("message");
+
     if(_.isEmpty(message)) {
-      message = "No message.";
+      $("main").fadeOut(0);
+      $("main").hide();
+    }
+    else {
+      // $("main").fadeIn(500);
+      stylePage();
     }
     return message;
   },
-  number: function() {
-    return Session.get('count');
-  },
   remaining: function() {
 
-    var remainingMessages = Messages.find({ displayDate: { $gt: getTodayUTCMidnight() } });
-    var remainingMessagesArray = remainingMessages.fetch();
+    var remainingMessages = Messages.find(
+      { displayDate: { $gt: getTodayUTCMidnight() } },
+      { fields: { text: 0, ip: 0 } }
+    ).fetch();
 
-    if( !_.isEmpty(remainingMessagesArray) ) {
-      return remainingMessages.count();
+    if( !_.isEmpty(remainingMessages) ) {
+      return remainingMessages.length;
     }
     else {
       return 0;
@@ -32,6 +33,6 @@ Template.home.helpers({
 
 Template.home.onRendered(function() {
   if(Meteor.isClient) {
-    setMessage();
+    stylePage();
   }
 });

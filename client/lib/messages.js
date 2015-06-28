@@ -1,1 +1,1 @@
-Meteor.subscribe('messages');
+// Meteor.subscribe('messages');
