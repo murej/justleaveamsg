@@ -27,11 +27,11 @@ Template.sendView.events({
 
     if(event.which === 13 && !hasPlaceholder) {
 
-      $("h1 span").blur().attr("contenteditable", false);
+      $("h1 span").blur().attr("contenteditable", false).text("");
 
       Session.set("sent", true);
       var newMessage = $("h1 span").text();
-      $("h1 span").removeClass().addClass("style0").text("...");
+      $("h1 span").removeClass().addClass("style0");
 
       $.get("http://api.hostip.info/get_json.php", function(ip) {
 

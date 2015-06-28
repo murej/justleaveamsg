@@ -20,5 +20,11 @@ footer {
     text-decoration: none;
     border-bottom-width: 1px;
     border-bottom-style: solid;
+
+    &:hover {
+      border-bottom-color: rgba(white, 1) !important;
+      color: rgba(white, 1) !important;
+      transition: color 0.15s ease-out, border-bottom-color 0.15s ease-out;
+    }
   }
 }
