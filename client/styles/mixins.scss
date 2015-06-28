@@ -1,0 +1,24 @@
+@import "settings";
+
+@mixin font-scale($scale, $line-height-factor: 1) {
+
+  @if $scale == 0 {
+    font-size: $font-size;
+    line-height: $font-size * $line-height;
+  }
+  @else {
+    $new-font-size: round($font-size * modular-scale($scale));
+    font-size: $new-font-size;
+    $new-line-height: ceil($new-font-size / ($line-height * $font-size )) * $line-height * $font-size;
+    line-height: ceil($new-line-height * $line-height-factor);
+
+    @if round($line-height-factor) != $line-height-factor {
+      $line-height-diff: ($new-line-height*$line-height-factor) - $new-line-height;
+      /* padding-top: ceil($line-height-diff/2); */
+    }
+  }
+}
+
+@function lines($units) {
+  @return round($units*$line-height*$font-size);
+}

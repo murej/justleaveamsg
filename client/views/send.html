@@ -1,0 +1,7 @@
+<template name="sendView">
+  <main>
+    {{#if isntSent}}<a href="/" class="close">&#10005;</a>{{/if}}
+    <h1><span contenteditable="true">Start typing...</span></h1>
+    {{#if isntSent}}<p class="instructions">Press enter to submit</p>{{/if}}
+  </main>
+</template>

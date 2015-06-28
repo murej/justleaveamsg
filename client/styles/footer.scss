@@ -1,0 +1,24 @@
+footer {
+  @extend %font-helvetica;
+
+  @include font-scale(-1);
+  /* text-transform: uppercase; */
+
+  @media screen and (max-width: 768px) {
+    margin-top: lines(1);
+  }
+  @media screen and (min-width: 769px) and (max-width: 1439px) {
+    margin-top: lines(1);
+  }
+  @media screen and (min-width: 1440px) {
+    margin-top: lines(0.75);
+  }
+
+
+  a {
+    padding-bottom: 1px;
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+}

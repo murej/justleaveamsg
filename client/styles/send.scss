@@ -1,0 +1,26 @@
+main {
+
+  a.close {
+    position: fixed;
+    display: block;
+    text-decoration: none;
+    right: lines(1);
+    top: lines(1);
+    @include font-scale(6);
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(white, 1) !important;
+      transition: color 0.15s ease-out;
+    }
+  }
+
+  p.instructions {
+    visibility: hidden;
+    @extend %font-helvetica-bold;
+    @include font-scale(0);
+    text-transform: uppercase;
+    margin-top: lines(-1);
+    margin-bottom: lines(1.5);
+  }
+}
