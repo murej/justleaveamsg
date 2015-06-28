@@ -22,12 +22,10 @@ Template.sendView.events({
   },
   'keydown h1': function(event, template) {
 
-    if(  $("h1 span").text() === "Start typing..." ) {
-      $("h1 span").text("");
-    }
+    var text = $("h1 span").text();
+    var hasPlaceholder = text === "Start typing...";
 
-    limitCharacters(event);
-    if(event.which === 13) {
+    if(event.which === 13 && !hasPlaceholder) {
 
       $("h1 span").blur().attr("contenteditable", false);
 
@@ -57,6 +55,12 @@ Template.sendView.events({
           }, 2000);
         });
       });
+    }
+    else {
+      if(hasPlaceholder) {
+        $("h1 span").text("");
+      }
+      limitCharacters(event);
     }
   }
   //,
