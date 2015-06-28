@@ -7,3 +7,4 @@ ccan:cssreset
 insecure
 momentjs:moment
 appcache
+meteorhacks:fast-render
