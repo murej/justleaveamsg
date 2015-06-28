@@ -25,7 +25,14 @@ Template.sendView.events({
     var text = $("h1 span").text();
     var hasPlaceholder = text === "Start typing...";
 
-    if(event.which === 13 && !hasPlaceholder) {
+    // if ESC
+    if(event.which === 27) {
+      event.preventDefault();
+      window.location.href = "/";
+    }
+    // if ENTER
+    else if(event.which === 13 && !hasPlaceholder) {
+      event.preventDefault();
 
       $("h1 span").blur().attr("contenteditable", false).text("");
 
