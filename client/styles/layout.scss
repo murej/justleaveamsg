@@ -67,51 +67,42 @@ body {
       span {
         display: block;
         outline: none;
+        margin: 0 auto;
       }
     }
     p {
     }
 
-/*     .style1, .style10, .style14 {
-  @extend %font-ptsans;
-}
-.style2, .style9 {
-  @extend %font-ptmono;
-}
-.style6, .style8 {
-  @extend %font-playfair;
-}
-.style7, .style11, .style16 {
-  @extend %font-helvetica-bold;
-}
-.style4, .style12, .style17 {
-  @extend %font-opensans-bold-italic;
-}
-.style3, .style5, .style13, .style15, .style18 {
-  @extend %font-oswald-bold;
-}
- */
     .style {
 
-      &1, &12, &23, &34, &45 { @extend %font-knewave; }
-      &2, &13, &24, &35, &46 { @extend %font-lilitaone; }
-      &3, &14, &25, &36, &47 { @extend %font-modak; }
-      &4, &15, &26, &37, &48 { @extend %font-ralewaydots; }
-      &5, &16, &27, &38, &49 { @extend %font-oswald-bold; }
-      &6, &17, &28, &39, &50 { @extend %font-ptserif; }
-      &7, &18, &29, &40, &51 { @extend %font-unicaone; }
-      &8, &19, &30, &41, &52 { @extend %font-abrilfatface; }
-      &9, &20, &31, &42, &53 { @extend %font-oswald-bold; }
-      &10, &21, &32, &43, &54 { @extend %font-opensans-extrabold-italic; }
-      &11, &22, &33, &44, &55 { @extend %font-ptserif; }
+      $typefaces: (
+        "knewave",
+        "lilitaone",
+        "modak",
+        "ralewaydots",
+        "oswald-bold",
+        "ptserif",
+        "unicaone",
+        "abrilfatface",
+        "opensans-extrabold-italic"
+      );
 
-      @for $i from 1 through 25 {
+      @for $i from 0 through (length($typefaces) * 10) {
+        $index: ( $i % length($typefaces) + 1);
+        $typeface: nth($typefaces, $index);
+
+        &#{$i + 1} {
+          @extend %font-#{$typeface}
+        }
+      };
+
+      @for $i from 1 through (length($typefaces) * 5) {
         @if $i % 2 == 1 {
           &#{$i} {
             text-transform: uppercase;
           }
         }
-      }
+      };
     }
 
     .style0 {
