@@ -1,0 +1,8 @@
+main {
+  @include justify-content(center);
+  .loader-inner {
+    & > div {
+      background-color: rgba(white, 0.3);
+    }
+  }
+}
