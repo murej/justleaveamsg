@@ -76,6 +76,6 @@ Template.sendView.events({
 });
 
 Template.sendView.onRendered(function() {
-  $('h1 span').focus();
+  $('h1 span').text("Start typing...").focus();
   stylePage("");
 });
