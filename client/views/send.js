@@ -8,7 +8,12 @@ Template.sendView.events({
   'keyup h1': function(event, template) {
     var text = $("h1 span").text();
     if(_.isEmpty(text)) {
-      $("h1 span").text("Start typing...");
+      if(Meteor.Device.isPhone() || Meteor.Device.isTablet()) {
+        $('h1 span').text("Tap to type");
+      }
+      else {
+        $('h1 span').text("Start typing...");
+      }
       $("p").css("visibility", "hidden");
     }
     else {
@@ -23,7 +28,7 @@ Template.sendView.events({
   'keydown h1': function(event, template) {
 
     var text = $("h1 span").text();
-    var hasPlaceholder = text === "Start typing...";
+    var hasPlaceholder = (text === "Start typing...") || (text === "Tap to type");
 
     // if ESC
     if(event.which === 27) {
@@ -34,33 +39,33 @@ Template.sendView.events({
     else if(event.which === 13 && !hasPlaceholder) {
       event.preventDefault();
 
-      $("h1 span").blur().attr("contenteditable", false).text("");
-
       Session.set("sent", true);
       var newMessage = $("h1 span").text();
-      $("h1 span").removeClass().addClass("style0");
 
-      $.get("http://api.hostip.info/get_json.php", function(ip) {
+      $("h1 span")
+      .blur()
+      .attr("contenteditable", false)
+      .text("")
+      .removeClass().addClass("style0");
 
-        Messages.insert({
-          createdAt: moment().utc().toDate(),
-          text: newMessage,
-          displayDate: Session.get("nextDisplayDate"),
-          ip: ip
-        },
-        function(err, id) {
-          if(err) {
-            console.log(err);
-            $("h1 span").html("&#9785;");
-          }
-          else {
-            $("h1 span").html("&#9786;");
-            Session.set("message", newMessage);
-          }
-          setTimeout(function() {
-            window.location.href = "/";
-          }, 2000);
-        });
+      Messages.insert({
+        createdAt: moment().utc().toDate(),
+        text: newMessage,
+        displayDate: Session.get("nextDisplayDate"),
+        ip: headers.getClientIP()
+      },
+      function(err, id) {
+        if(err) {
+          console.log(err);
+          $("h1 span").html("&#9785;");
+        }
+        else {
+          $("h1 span").html("&#9786;");
+          Session.set("message", newMessage);
+        }
+        setTimeout(function() {
+          window.location.href = "/";
+        }, 1500);
       });
     }
     else {
@@ -76,6 +81,11 @@ Template.sendView.events({
 });
 
 Template.sendView.onRendered(function() {
-  $('h1 span').text("Start typing...").focus();
+  if(Meteor.Device.isPhone() || Meteor.Device.isTablet()) {
+    $('h1 span').text("Tap to type");
+  }
+  else {
+    $('h1 span').text("Start typing...").focus();
+  }
   stylePage("");
 });

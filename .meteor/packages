@@ -9,3 +9,5 @@ momentjs:moment
 appcache
 meteorhacks:fast-render
 reywood:iron-router-ga
+gadicohen:headers
+mystor:device-detection

@@ -25,7 +25,7 @@ Meteor.startup(function() {
   // var isDisplayedArray = isDisplayed.fetch();
   // var lastDisplayedDate = isDisplayedArray[isDisplayedArray.length - 1].display_date;
   //
-  // var needsUpdate = today.diff(moment(lastDisplayedDate).utc(), "minutes", true) >= 1;
+  // var needsUpdate = today.diff(moment(lastDisplayedDate).utc(), "days", true) >= 1;
   //
   // console.log(today);
   // console.log(moment(lastDisplayedDate));

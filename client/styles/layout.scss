@@ -35,11 +35,11 @@ body {
     }
 
     h2 {
-      span {
-        @extend %font-helvetica-bold;
-        @include font-scale(0);
-        text-transform: uppercase;
+      @extend %font-helvetica-bold;
+      @include font-scale(0);
+      text-transform: uppercase;
 
+      span {
         padding-bottom: 1px;
         border-bottom-width: 2px;
         border-bottom-style: solid;
@@ -50,11 +50,11 @@ body {
       @include flex(1);
 
       @media screen and (max-width: 768px) {
-        margin: 0 lines(1) lines(2.5) lines(1);
-        @include font-scale(6);
+        margin: lines(3.75) lines(1) lines(4.5) lines(1);
+        @include font-scale(7);
       }
       @media screen and (min-width: 769px) and (max-width: 1439px) {
-        margin: 0 0 lines(4) 0;
+        margin: lines(2.75) 0 lines(4) 0;
         @include font-scale(12);
       }
       @media screen and (min-width: 1440px) {
